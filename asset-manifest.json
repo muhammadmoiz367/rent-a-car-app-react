@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/rent-a-car-app-react/static/css/main.0ed88181.chunk.css",
+    "main.js": "/rent-a-car-app-react/static/js/main.dff33008.chunk.js",
+    "main.js.map": "/rent-a-car-app-react/static/js/main.dff33008.chunk.js.map",
+    "runtime-main.js": "/rent-a-car-app-react/static/js/runtime-main.d70086b6.js",
+    "runtime-main.js.map": "/rent-a-car-app-react/static/js/runtime-main.d70086b6.js.map",
+    "static/js/2.56a1f598.chunk.js": "/rent-a-car-app-react/static/js/2.56a1f598.chunk.js",
+    "static/js/2.56a1f598.chunk.js.map": "/rent-a-car-app-react/static/js/2.56a1f598.chunk.js.map",
+    "index.html": "/rent-a-car-app-react/index.html",
+    "precache-manifest.3d38a57198f52cfb75a47e95507df4b2.js": "/rent-a-car-app-react/precache-manifest.3d38a57198f52cfb75a47e95507df4b2.js",
+    "service-worker.js": "/rent-a-car-app-react/service-worker.js",
+    "static/css/main.0ed88181.chunk.css.map": "/rent-a-car-app-react/static/css/main.0ed88181.chunk.css.map",
+    "static/js/2.56a1f598.chunk.js.LICENSE.txt": "/rent-a-car-app-react/static/js/2.56a1f598.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d70086b6.js",
+    "static/js/2.56a1f598.chunk.js",
+    "static/css/main.0ed88181.chunk.css",
+    "static/js/main.dff33008.chunk.js"
+  ]
+}
