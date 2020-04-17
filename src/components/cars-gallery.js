@@ -17,45 +17,71 @@ export default class CarsGallery extends Component{
         this.ref = firebase.firestore().collection('luxury');
         this.unsubscribe = null;
         this.state = {
-          cars: []
+          cars: [],
+          luxuryCars:[],
+          bus:[],
+          standardCars:[],
+          hatchbackCars:[],
+          limousinesCars:[]
         };
 
       }
-      getCars=()=>{
-            console.log(this.state)
-        }
-      onCollectionUpdate = (querySnapshot) => {
-        const cars = [];
-        querySnapshot.forEach((doc) => {
-          const { name, car_type, charges_with_fuel, charges_without_fuel, image_src } = doc.data();
-          cars.push({
-            key: doc.id,
-            doc, // DocumentSnapshot
-            name,
-            car_type,
-            charges_with_fuel,
-            charges_without_fuel,
-            image_src,
-          });
-        });
-        this.setState(previousState=>({
-            cars : previousState.cars.concat(cars)
-       }));
-      }
-
-
 
     componentDidMount(){
-        var elems = document.querySelectorAll('.tabs');
-        M.Tabs.init(elems, {})
-        this.unsubscribe = firebase.firestore().collection('luxury').onSnapshot(this.onCollectionUpdate);
-        this.unsubscribe = firebase.firestore().collection('bus').onSnapshot(this.onCollectionUpdate);
-        this.unsubscribe = firebase.firestore().collection('standard').onSnapshot(this.onCollectionUpdate);
-        this.unsubscribe = firebase.firestore().collection('hatchback').onSnapshot(this.onCollectionUpdate);
-        this.unsubscribe = firebase.firestore().collection('lumousines').onSnapshot(this.onCollectionUpdate);
-        this.getCars();
+        var elems = document.querySelectorAll(".tabs");
+        M.Tabs.init(elems, {});
+        const cars = [];
+        this.unsubscribe = firebase
+        .firestore()
+        .collection("luxury")
+        .onSnapshot((querySnapshot) => {
+            console.log(1);
+            querySnapshot.forEach((doc) => {
+            cars.push(doc.data());
+            });
+        });
+        this.unsubscribe = firebase
+        .firestore()
+        .collection("bus")
+        .onSnapshot((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+            console.log(2);
+            cars.push(doc.data());
+            });
+        });
+        this.unsubscribe = firebase
+        .firestore()
+        .collection("standard")
+        .onSnapshot((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+            console.log(3);
+            cars.push(doc.data());
+            });
+        });
+        console.log("boom");
+        this.setState({
+            cars,
+        });
+        const luxuryCars=this.state.cars.filter( car => car.car_type==='luxury');
+        const bus=this.state.cars.filter( car => car.car_type==='bus');
+        const standardCars=this.state.cars.filter( car => car.car_type==='standard');
+        const hatchbackCars=this.state.cars.filter( car => car.car_type==='hatchback');
+        const limousinesCars=this.state.cars.filter( car => car.car_type==='limousines');
+
+        console.log(luxuryCars,bus,standardCars);
+        this.setState({
+            luxuryCars,
+            bus,
+            standardCars,
+            hatchbackCars,
+            limousinesCars
+        });
+
+
     }
+
     render(){
+        console.log(this.state);
         return(
             <div>
                 <section className="cars">
