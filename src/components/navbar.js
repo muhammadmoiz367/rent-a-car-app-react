@@ -3,6 +3,7 @@ import M from 'materialize-css'
 import {Link} from 'react-router-dom'
 import '../style.css'
 
+
 class Navbar extends Component{
     componentDidMount(){
         var elem = document.querySelectorAll('.modal');
@@ -18,7 +19,7 @@ class Navbar extends Component{
                     <nav className="main-nav  #1a237e indigo darken-4">
                         <div className="container">
                             <div className="nav-wrapper">
-                                <a href="#" className="brand-logo"><img  id="logo" src=""/></a>
+                                <a href="#" className="brand-logo"><img  id="logo" src={process.env.PUBLIC_URL + '/images/logo.jpg'}/></a>
                                 <a href="#" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
                                 <ul className="right hide-on-med-and-down">
                                     <li><Link to="/" className="active" >Home</Link></li>
@@ -31,33 +32,33 @@ class Navbar extends Component{
                         </div>
                     </nav>
                 </div>
-                <ul id="dropdown1" class="dropdown-content">
-                    <li><a href="add-car.html">Register cars</a></li>
-                    <li class="divider"></li>
-                    <li><a href="view-booking.html">View Bookings</a></li>
+                <ul id="dropdown1" className="dropdown-content">
+                    <li><Link to="/register-cars">Register cars</Link></li>
+                    <li className="divider"></li>
+                    <li><Link to="/view-booking">View Bookings</Link></li>
                 </ul>
-                <div id="modal1" class="modal">
+                <div id="modal1" className="modal">
                     <div id="admin-login" class="login-div">
-                        <div class="row">
+                        <div className="row">
                         <div id="status"></div>
-                        <h5 class="center-align">Sign in</h5>
-                        <h6 class="center-align">Register your car</h6>
+                        <h5 className="center-align">Sign in</h5>
+                        <h6 className="center-align">Register your car</h6>
                         </div>
-                        <div class="row">
-                        <div class="input-field col s12">
+                        <div className="row">
+                        <div className="input-field col s12">
                             <input id="email-login" type="text"/>
                             <label htmlFor="email_input">Email</label>
                         </div>
                         </div>
-                        <div class="row">
-                        <div class="input-field col s12">
+                        <div className="row">
+                        <div className="input-field col s12">
                             <input id="password-login" type="password"/>
                             <label htmlFor="password_input">Password</label>
                         </div>
                         </div>
-                        <div class="row">
-                        <div class="col s6"><a href="#">Create account</a></div>
-                        <div class="col s6 right-align login-btn"><a class="waves-effect waves-light btn  #1a237e indigo darken-4">Login</a></div>
+                        <div className="row">
+                        <div className="col s6"><a href="#">Create account</a></div>
+                        <div className="col s6 right-align login-btn"><a className="waves-effect waves-light btn  #1a237e indigo darken-4">Login</a></div>
                         </div>
                     </div>
                 </div>

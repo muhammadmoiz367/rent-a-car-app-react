@@ -17,11 +17,11 @@ export default class Slider extends Component{
             <div>
                 <div className="row ">
                     <div className="carousel carousel-slider">
-                        <a className="carousel-item" href="#one!"><img src=""/></a>
-                        <a className="carousel-item" href="#two!"><img src="../../public/images/slider-2.jpg"/></a>
-                        <a className="carousel-item" href="#three!"><img src="images/slider-3.jpg"/></a>
-                        <a className="carousel-item" href="#four!"><img src="images/slider-4.jpg"/></a>
-                        <a className="carousel-item" href="#five!"><img src="images/slider-5.jpg"/></a>
+                        <a className="carousel-item" href="#one!"><img src={process.env.PUBLIC_URL + '/images/slider-1.jpg'}/></a>
+                        <a className="carousel-item" href="#two!"><img src={process.env.PUBLIC_URL + '/images/slider-2.jpg'} /></a>
+                        <a className="carousel-item" href="#three!"><img src={process.env.PUBLIC_URL + '/images/slider-3.jpg'}/></a>
+                        <a className="carousel-item" href="#four!"><img src={process.env.PUBLIC_URL + '/images/slider-4.jpg'}/></a>
+                        <a className="carousel-item" href="#five!"><img src={process.env.PUBLIC_URL + '/images/slider-5.jpg'}/></a>
                     </div>
                     <div className="jumbotran-content">
                         <div className="jumbotran">

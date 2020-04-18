@@ -12,6 +12,20 @@
   margin-left: 20px !important;
   overflow-x: hidden;
 }
+#dropdown1{
+  position: absolute !important;
+  top: 13% !important;
+
+}
+#car_image{
+  background-color: #1a237e !important;
+  border-radius: 25px !important;
+}
+#register-car-btn{
+  color: white !important;
+
+
+}
 #map {
   height: 400px;  /* The height is 400 pixels */
   width: 100%;  /* The width is the width of the web page */

@@ -6,7 +6,9 @@ import '../style.css'
 export default class Sidenav extends Component{
     componentDidMount(){
         var elems = document.querySelectorAll('.sidenav');
-        M.Sidenav.init(elems, {draggable:true})
+        M.Sidenav.init(elems, {draggable:true});
+        var elems = document.querySelectorAll('.dropdown-trigger');
+        M.Dropdown.init(elems, {})
     }
     render(){
         return(
@@ -18,7 +20,13 @@ export default class Sidenav extends Component{
                     <li><Link to="/contact">Contact</Link></li>
                     <li><a href="#modal1" className="waves-effect waves-light btn modal-trigger #1a237e indigo darken-2">Admin Login</a></li>
                 </ul>
+                <ul id="dropdown1" className="dropdown-content">
+                    <li><Link to="/register-cars">Register cars</Link></li>
+                    <li className="divider"></li>
+                    <li><Link to="/view-booking">View Bookings</Link></li>
+                </ul>
             </div>
+
         )
     }
 }

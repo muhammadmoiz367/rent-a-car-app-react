@@ -37,7 +37,15 @@ export default class CarsGallery extends Component{
         .onSnapshot((querySnapshot) => {
             console.log(1);
             querySnapshot.forEach((doc) => {
-            cars.push(doc.data());
+                const { name, car_type, charges_with_fuel, charges_without_fuel, image_src } = doc.data();
+                cars.push({
+                  key: doc.id,
+                  name,
+                  car_type,
+                  charges_with_fuel,
+                  charges_without_fuel,
+                  image_src
+                });
             });
         });
         this.unsubscribe = firebase
@@ -45,8 +53,15 @@ export default class CarsGallery extends Component{
         .collection("bus")
         .onSnapshot((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-            console.log(2);
-            cars.push(doc.data());
+                const { name, car_type, charges_with_fuel, charges_without_fuel, image_src } = doc.data();
+                cars.push({
+                  key: doc.id,
+                  name,
+                  car_type,
+                  charges_with_fuel,
+                  charges_without_fuel,
+                  image_src
+                });
             });
         });
         this.unsubscribe = firebase
@@ -54,34 +69,43 @@ export default class CarsGallery extends Component{
         .collection("standard")
         .onSnapshot((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-            console.log(3);
-            cars.push(doc.data());
+                const { name, car_type, charges_with_fuel, charges_without_fuel, image_src } = doc.data();
+                cars.push({
+                  key: doc.id,
+                  name,
+                  car_type,
+                  charges_with_fuel,
+                  charges_without_fuel,
+                  image_src,
+                });
             });
         });
         console.log("boom");
         this.setState({
             cars,
         });
+
+        /*this.setState({
+            luxuryCars,
+            bus,
+            standardCars,
+            hatchbackCars,
+            limousinesCars
+        });*/
+
+
+    }
+
+    render(){
+        console.log(this.state.cars);
         const luxuryCars=this.state.cars.filter( car => car.car_type==='luxury');
         const bus=this.state.cars.filter( car => car.car_type==='bus');
         const standardCars=this.state.cars.filter( car => car.car_type==='standard');
         const hatchbackCars=this.state.cars.filter( car => car.car_type==='hatchback');
         const limousinesCars=this.state.cars.filter( car => car.car_type==='limousines');
 
+
         console.log(luxuryCars,bus,standardCars);
-        this.setState({
-            luxuryCars,
-            bus,
-            standardCars,
-            hatchbackCars,
-            limousinesCars
-        });
-
-
-    }
-
-    render(){
-        console.log(this.state);
         return(
             <div>
                 <section className="cars">

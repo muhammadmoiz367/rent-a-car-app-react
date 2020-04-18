@@ -11,7 +11,7 @@ export default class Footer extends Component{
                     <div className="row">
                         <div className="col s12 m6">
                             <h5>ABOUT STS RENT A CAR</h5><br/>
-                            <img src="images/logo.jpg" alt=""/>
+                            <img src={process.env.PUBLIC_URL + '/images/logo.jpg'} alt=""/>
                             <p>At STS Rent a Car, our prime business idea is simplify travelling for you and that's why our business solegen is "TRAVELLING FOR YOU"</p>
                         </div>
                         <div className="col s12 m6">

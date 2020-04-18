@@ -33,7 +33,7 @@ export default class About extends Component{
                     </div>
                 </section>
                 <section className="bg #e0e0e0 grey lighten-2">
-                    <img id="bg-car" src="images/car-bg.jpg" alt=""/>
+                    <img id="bg-car" src={process.env.PUBLIC_URL + '/images/car-bg.jpg'} alt=""/>
                 </section>
             </div>
         )

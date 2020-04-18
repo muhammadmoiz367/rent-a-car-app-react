@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import M from 'materialize-css'
+import {Link} from 'react-router-dom'
 import '../style.css'
 import firebase from '../firebase'
 
@@ -18,7 +18,6 @@ export default class AllCars extends Component{
           const { name, car_type, charges_with_fuel, charges_without_fuel, image_src } = doc.data();
           cars.push({
             key: doc.id,
-            doc, // DocumentSnapshot
             name,
             car_type,
             charges_with_fuel,
@@ -49,9 +48,14 @@ export default class AllCars extends Component{
                     <div className="col s12 m3">
                         <div className="card hoverable">
                             <div className="card-image">
-                                <img src={`images/${car.image_src}`} /><br/><br/>
+                                <img src={`${process.env.PUBLIC_URL}/images/${car.image_src}`} /><br/><br/>
                                 <p className="card-title">{car.name}</p>
-                                <a className="btn-floating halfway-fab add-btn waves-effect waves-light red modal-trigger" href="booking.html"><i className=" material-icons">add</i></a>
+                                <Link to={{
+                                  pathname:'/booking',
+                                  aboutProps:{
+                                    cars:car
+                                  }
+                                }} className="btn-floating halfway-fab add-btn waves-effect waves-light red modal-trigger" ><i className=" material-icons">add</i></Link>
                             </div>
                             <div className="card-content">
                                 <p>{car.car_type}</p>

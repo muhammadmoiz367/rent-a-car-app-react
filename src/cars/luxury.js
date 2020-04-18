@@ -19,7 +19,6 @@ export default class Luxury extends Component{
           const { name, car_type, charges_with_fuel, charges_without_fuel, image_src } = doc.data();
           cars.push({
             key: doc.id,
-            doc, // DocumentSnapshot
             name,
             car_type,
             charges_with_fuel,
@@ -38,17 +37,22 @@ export default class Luxury extends Component{
         console.log(this.state.cars)
       }
     render(){
+      const x=this.state.cars.filter(car => car.charges_without_fuel < 10000);
+      console.log(x);
+
         return(
             <div className="row" id="luxury">
             {this.state.cars.map(car=>(
                     <div className="col s12 m3">
                         <div className="card hoverable">
                             <div className="card-image">
-                                <img src={`images/${car.image_src}`} /><br/><br/>
+                                <img src={`${process.env.PUBLIC_URL}/images/${car.image_src}`} /><br/><br/>
                                 <p className="card-title">{car.name}</p>
                                 <Link to={{
-                                  pathname:'/booking'
-
+                                  pathname:'/booking',
+                                  aboutProps:{
+                                    cars:car
+                                  }
                                 }} className="btn-floating halfway-fab add-btn waves-effect waves-light red modal-trigger" ><i className=" material-icons">add</i></Link>
                             </div>
                             <div className="card-content">
