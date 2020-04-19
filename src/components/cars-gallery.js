@@ -30,22 +30,20 @@ export default class CarsGallery extends Component{
     componentDidMount(){
         var elems = document.querySelectorAll(".tabs");
         M.Tabs.init(elems, {});
-        const cars = [];
+        const cars = [],
+            luxuryCars=[],
+            bus=[],
+            standardCars=[],
+            hatchbackCars=[],
+            limousinesCars=[];
         this.unsubscribe = firebase
         .firestore()
         .collection("luxury")
         .onSnapshot((querySnapshot) => {
-            console.log(1);
             querySnapshot.forEach((doc) => {
-                const { name, car_type, charges_with_fuel, charges_without_fuel, image_src } = doc.data();
-                cars.push({
-                  key: doc.id,
-                  name,
-                  car_type,
-                  charges_with_fuel,
-                  charges_without_fuel,
-                  image_src
-                });
+                cars.push(doc.data());
+                luxuryCars.push(doc.data())
+
             });
         });
         this.unsubscribe = firebase
@@ -53,59 +51,38 @@ export default class CarsGallery extends Component{
         .collection("bus")
         .onSnapshot((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                const { name, car_type, charges_with_fuel, charges_without_fuel, image_src } = doc.data();
-                cars.push({
-                  key: doc.id,
-                  name,
-                  car_type,
-                  charges_with_fuel,
-                  charges_without_fuel,
-                  image_src
+                cars.push(doc.data());
+                bus.push(doc.data())
+
                 });
             });
-        });
+
         this.unsubscribe = firebase
         .firestore()
         .collection("standard")
         .onSnapshot((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                const { name, car_type, charges_with_fuel, charges_without_fuel, image_src } = doc.data();
-                cars.push({
-                  key: doc.id,
-                  name,
-                  car_type,
-                  charges_with_fuel,
-                  charges_without_fuel,
-                  image_src,
-                });
+                cars.push(doc.data());
+                standardCars.push(doc.data())
+
             });
         });
         console.log("boom");
         this.setState({
             cars,
-        });
-
-        /*this.setState({
             luxuryCars,
             bus,
             standardCars,
             hatchbackCars,
             limousinesCars
-        });*/
+        });
 
 
     }
 
     render(){
-        console.log(this.state.cars);
-        const luxuryCars=this.state.cars.filter( car => car.car_type==='luxury');
-        const bus=this.state.cars.filter( car => car.car_type==='bus');
-        const standardCars=this.state.cars.filter( car => car.car_type==='standard');
-        const hatchbackCars=this.state.cars.filter( car => car.car_type==='hatchback');
-        const limousinesCars=this.state.cars.filter( car => car.car_type==='limousines');
+        console.log(this.state);
 
-
-        console.log(luxuryCars,bus,standardCars);
         return(
             <div>
                 <section className="cars">
@@ -124,12 +101,12 @@ export default class CarsGallery extends Component{
                     </div>
                     <div className="cars-gallery">
 
-                        <AllCars />
-                        <Luxury />
-                        <Van />
-                        <Standard />
-                        <HatchBack />
-                        <Limousines />
+                        <AllCars cars={this.state.cars}/>
+                        <Luxury cars={this.state.luxuryCars}/>
+                        <Van cars={this.state.bus}/>
+                        <Standard cars={this.state.standardCars}/>
+                        <HatchBack cars={this.state.hatchbackCars}/>
+                        <Limousines cars={this.state.limousinesCars}/>
                     </div>
                 </section>
             </div>

@@ -4,40 +4,10 @@ import '../style.css'
 import firebase from '../firebase'
 
 export default class Luxury extends Component{
-    constructor(props) {
-        super(props);
-        this.ref = firebase.firestore().collection('standard');
-        this.unsubscribe = null;
-        this.state = {
-          cars: []
-        };
-      }
-      onCollectionUpdate = (querySnapshot) => {
-        const cars = [];
-        querySnapshot.forEach((doc) => {
-          const { name, car_type, charges_with_fuel, charges_without_fuel, image_src } = doc.data();
-          cars.push({
-            key: doc.id,
-            name,
-            car_type,
-            charges_with_fuel,
-            charges_without_fuel,
-            image_src,
-          });
-        });
-        this.setState({
-          cars
-       });
-      }
-
-      componentDidMount(){
-        this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate);
-        console.log(this.state.cars)
-      }
     render(){
         return(
             <div className="row" id="standard">
-            {this.state.cars.map(car=>(
+            {this.props.cars.map(car=>(
                     <div className="col s12 m3">
                         <div className="card hoverable">
                             <div className="card-image">

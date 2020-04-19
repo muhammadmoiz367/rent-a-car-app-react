@@ -17,7 +17,9 @@ export default class RegisterCarsForm extends Component{
     }
     handleChange(event){
         if(event.target.name === 'image_src'){
-            this.setState({ [event.target.name]: event.target.value.split('\\')[2]});
+            //this.setState({ [event.target.name]: event.target.value.split('\\')[2]});
+            console.log(event.target.value.split('/')[2]);
+
         }
         this.setState({ [event.target.name]: event.target.value });
     }
@@ -45,8 +47,8 @@ export default class RegisterCarsForm extends Component{
                         </div>
                         <div className="row">
                             <div className="input-field col m6">
-                            <select name="car_type" id="car_type" onChange={this.handleChange}>
-                                <option value="luxury" selected>luxury</option>
+                            <select name="car_type" id="car_type" onChange={this.handleChange} value={this.state.car_type}>
+                                <option value="luxury">luxury</option>
                                 <option value="standard">standard</option>
                                 <option value="bus">bus</option>
                                 <option value="hatcback">hatchback</option>
