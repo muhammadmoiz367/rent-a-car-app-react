@@ -38,7 +38,7 @@ class Navbar extends Component{
                     <li><Link to="/view-booking">View Bookings</Link></li>
                 </ul>
                 <div id="modal1" className="modal">
-                    <div id="admin-login" class="login-div">
+                    <div id="admin-login" className="login-div">
                         <div className="row">
                         <div id="status"></div>
                         <h5 className="center-align">Sign in</h5>

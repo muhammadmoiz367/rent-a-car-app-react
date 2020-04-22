@@ -1,48 +1,39 @@
 import React,{Component} from 'react'
 import {Link} from 'react-router-dom'
 import '../style.css'
-import firebase from '../firebase'
+import Loader from 'react-loader-spinner'
 
 export default class Luxury extends Component{
-    constructor(props) {
-        super(props);
-        this.ref = firebase.firestore().collection('hatchback');
-        this.unsubscribe = null;
-        this.state = {
-          cars: []
-        };
+    state={
+        showLoader:true,
+        showData:false
       }
-      onCollectionUpdate = (querySnapshot) => {
-        const cars = [];
-        querySnapshot.forEach((doc) => {
-          const { name, car_type, charges_with_fuel, charges_without_fuel, image_src } = doc.data();
-          cars.push({
-            key: doc.id,
-            doc, // DocumentSnapshot
-            name,
-            car_type,
-            charges_with_fuel,
-            charges_without_fuel,
-            image_src,
-          });
-        });
-        this.setState({
-          cars
-       });
-      }
-
       componentDidMount(){
-        this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate);
-        console.log(this.state.cars)
+        setTimeout(()=>{
+            this.setState({
+              showLoader : false,
+              showData:true
+            })
+        },5000)
       }
     render(){
         return(
             <div className="row" id="hatchback">
-            {this.state.cars.map(car=>(
-                    <div className="col s12 m3">
+            { this.state.showLoader && (
+              <Loader style={{position:'absolute',left:'50%'}}
+              type="ThreeDots"
+              color="darkBlue"
+              height={100}
+              width={100}
+              timeout={3000} //3 secs
+              radius={40}
+            />
+            )}
+            {this.state.showData && this.props.cars.map(car=>(
+                    <div key={car.name} className="col s12 m3">
                         <div className="card hoverable">
                             <div className="card-image">
-                                <img src={`images/${car.image_src}`} /><br/><br/>
+                                <img src={`${process.env.PUBLIC_URL}/images/${car.image_src}`} /><br/><br/>
                                 <p className="card-title">{car.name}</p>
                                 <Link to={{
                                   pathname:'/booking',
@@ -53,12 +44,12 @@ export default class Luxury extends Component{
                             </div>
                             <div className="card-content">
                                 <p>{car.car_type}</p>
-                                <p className="right rates">{`RS. ${car.charges_without_fuel} &Backslash;Day`}</p>
+                                <p className="right rates">{`RS. ${car.charges_without_fuel} \\ Day`}</p>
                             </div>
                         </div>
                     </div>
             ))}
-            {this.state.cars.length===0 &&
+            {this.props.cars.length===0 &&
             <div className="center">
                 No cars available
             </div>

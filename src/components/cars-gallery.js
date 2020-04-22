@@ -30,19 +30,20 @@ export default class CarsGallery extends Component{
     componentDidMount(){
         var elems = document.querySelectorAll(".tabs");
         M.Tabs.init(elems, {});
-        const cars = [],
-            luxuryCars=[],
-            bus=[],
-            standardCars=[],
-            hatchbackCars=[],
-            limousinesCars=[];
+
         this.unsubscribe = firebase
         .firestore()
         .collection("luxury")
         .onSnapshot((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                cars.push(doc.data());
-                luxuryCars.push(doc.data())
+                //cars.push(doc.data());
+                //luxuryCars.push(doc.data())
+                this.setState({
+                    cars:[...this.state.cars,doc.data()]
+                });
+                this.setState({
+                    luxuryCars: [...this.state.luxuryCars,doc.data()]
+                });
 
             });
         });
@@ -51,8 +52,12 @@ export default class CarsGallery extends Component{
         .collection("bus")
         .onSnapshot((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                cars.push(doc.data());
-                bus.push(doc.data())
+                this.setState({
+                    cars:[...this.state.cars,doc.data()]
+                });
+                this.setState({
+                    bus:[...this.state.bus,doc.data()]
+                });
 
                 });
             });
@@ -62,21 +67,29 @@ export default class CarsGallery extends Component{
         .collection("standard")
         .onSnapshot((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                cars.push(doc.data());
-                standardCars.push(doc.data())
+                this.setState({
+                    cars:[...this.state.cars,doc.data()]
+                });
+                this.setState({
+                    standardCars:[...this.state.standardCars,doc.data()]
+                });
 
             });
         });
-        console.log("boom");
-        this.setState({
-            cars,
-            luxuryCars,
-            bus,
-            standardCars,
-            hatchbackCars,
-            limousinesCars
-        });
+        this.unsubscribe = firebase
+        .firestore()
+        .collection("hatchback")
+        .onSnapshot((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                this.setState({
+                    cars:[...this.state.cars,doc.data()]
+                });
+                this.setState({
+                    hatchbackCars:[...this.state.hatchbackCars,doc.data()]
+                });
 
+            });
+        });
 
     }
 

@@ -20,7 +20,10 @@
 #car_image{
   background-color: #1a237e !important;
   border-radius: 25px !important;
+  width: 3% !important;
+  padding-left: 10px !important;
 }
+
 #register-car-btn{
   color: white !important;
 
@@ -277,25 +280,20 @@ label.active {
 }
 .delete-btn{
     position: absolute !important;
-    top: 72% !important;
-    left: 87% !important;
-    border: 1px solid #1a237e ;
-    padding: 4px !important;
-    border-radius: 10px ;
+    top: 65% !important;
+    left: 84% !important;
+    border-radius: 10px !important;
     transition: background-color 500ms;
     transition: border-radius 50ms;
+    text-transform: capitalize;
   }
-.delete-btn a{
-    color: #1a237e;
-}
+
 .delete-btn:hover{
-    background-color: #1a237e;
+    background-color: #1a227ec9 !important;
     border-radius: 15px ;
     box-shadow: 2px 2px 2px grey;
 }
-.delete-btn a:hover{
-    color: white;
-}
+
 
 .card-image img{
   height: 180px !important;
